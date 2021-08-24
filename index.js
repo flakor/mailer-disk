@@ -1,7 +1,7 @@
 // CommonJS
 const checkDiskSpace = require('check-disk-space').default
 const nodemailer = require('nodemailer');
-const warning = 10;
+const warning = 160;
 // // On Windows
 // checkDiskSpace('C:/blabla/bla').then((diskSpace) => {
 //     console.log(diskSpace)
@@ -15,13 +15,13 @@ const warning = 10;
 'use strict';
 
 // On Linux or macOS
-checkDiskSpace('/').then((diskSpace) => {
+checkDiskSpace('C:/').then((diskSpace) => {
     console.log(diskSpace)
 
     var humaner = diskSpace.free * 1e-9
     console.log(humaner.toFixed());
 
-    if (humaner == warning) {
+    if (humaner <= warning) {
         // {
         //     diskPath: '/',
         //     free: 12345678,
@@ -90,10 +90,10 @@ checkDiskSpace('/').then((diskSpace) => {
                 subject: 'Estado disco duro ✔' + os.hostname(),
 
                 // plaintext body
-                text: 'Buenas, el espacio del disco duro de:' + os.hostname() + 'es de:' + humaner.toFixed() + 'GB',
+                text: 'Buenas, el espacio del disco duro de: ' + os.hostname() + ' es de: ' + humaner.toFixed() + 'GB',
 
                 // HTML body
-                html: `<p><b>Hola buenas</b> El espacio en el disco duro de ` + os.hostname() + `es de ` + humaner.toFixed() + `GB <img src="cid:note@example.com"/></p>
+                html: `<p><b>Hola buenas</b> El espacio en el disco duro de ` + os.hostname() + ` es de ` + humaner.toFixed() + `GB <img src="cid:note@example.com"/></p>
         <p>Esta imagen es referencial al plan de acción<br/><img src="cid:nyan@example.com"/></p>`,
 
                 // AMP4EMAIL
@@ -117,7 +117,7 @@ checkDiskSpace('/').then((diskSpace) => {
                     // String attachment
                     {
                         filename: 'notes.txt',
-                        content: 'Buenas, el espacio del disco duro de:' + os.hostname() + 'es de:' + humaner.toFixed() + 'GB',
+                        content: 'Buenas, el espacio del disco duro de: ' + os.hostname() + ' es de: ' + humaner.toFixed() + 'GB',
                         contentType: 'text/plain' // optional, would be detected from the filename
                     },
 
