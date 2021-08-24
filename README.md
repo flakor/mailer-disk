@@ -1,4 +1,4 @@
 # mailer-disk
 alertas espacio disco duro
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://raw.githubusercontent.com/flakor/mailer-disk/main/assets/error-windows.gif)
